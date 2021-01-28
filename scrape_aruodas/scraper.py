@@ -112,7 +112,7 @@ class Scraper:
         except:
             print("Could not extract data, check url")
 
-    def scrape_aruodas(self, pages: int) -> DataFrame:
+    def scrape_aruodas(self, pages: int) -> pd.DataFrame:
         """Iterates through search results, scraping every listing in the page
 
         Args:
