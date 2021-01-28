@@ -12,6 +12,7 @@ class Scraper:
     """A Scraper designed to scrape Aruodas.lt apartment listing data
     More info at: https://github.com/valdas-v1/scrape_aruodas
     """
+
     def __init__(self):
         # Placeholder DataFrame to hold scraped data
         self.df = pd.DataFrame()
@@ -64,7 +65,9 @@ class Scraper:
             flat_info["key"] = cleaned_key
             flat_info["value"] = cleaned_value
 
-            clean_df = flat_info.pivot_table(values="value", columns="key", aggfunc="first")
+            clean_df = flat_info.pivot_table(
+                values="value", columns="key", aggfunc="first"
+            )
 
             # Setting a filter for the desired data
             required_data = [
@@ -125,6 +128,7 @@ class Scraper:
             DataFrame (object): DataFrame of the scraped data
         """
         for page in range(pages):
+            print(f"Scraping page {page}/{pages}")
             search = self.get_soup(f"https://m.en.aruodas.lt/butai/puslapis/{page}/")
             search = search.find_all("a", class_="object-image-link")
 
