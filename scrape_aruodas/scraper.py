@@ -128,7 +128,7 @@ class Scraper:
             DataFrame (object): DataFrame of the scraped data
         """
         for page in range(pages):
-            print(f"Scraping page {page}/{pages}")
+            print(f"Scraping page {page+1}/{pages}")
             search = self.get_soup(f"https://m.en.aruodas.lt/butai/puslapis/{page}/")
             search = search.find_all("a", class_="object-image-link")
 
