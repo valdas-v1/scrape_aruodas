@@ -44,70 +44,73 @@ class Scraper:
             soup (BeautifulSoup): Beautiful soup object of the aparment listing
         """
 
-        # Aparment data is listed in a dl
-        info = soup.find_all("dl")
+        try:
+            # Aparment data is listed in a dl
+            info = soup.find_all("dl")
 
-        # Placeholder DataFrame to hold aparment data. Matches data tags with data
-        flat_info = pd.DataFrame()
-        cleaned_key = []
-        for i in info[0].find_all("dt"):
-            cleaned_key.append(i.text)
+            # Placeholder DataFrame to hold aparment data. Matches data tags with data
+            flat_info = pd.DataFrame()
+            cleaned_key = []
+            for i in info[0].find_all("dt"):
+                cleaned_key.append(i.text)
 
-        cleaned_value = []
-        for i in info[0].find_all("dd"):
-            cleaned_value.append(i.text)
+            cleaned_value = []
+            for i in info[0].find_all("dd"):
+                cleaned_value.append(i.text)
 
-        flat_info["key"] = cleaned_key
-        flat_info["value"] = cleaned_value
+            flat_info["key"] = cleaned_key
+            flat_info["value"] = cleaned_value
 
-        clean_df = flat_info.pivot_table(values="value", columns="key", aggfunc="first")
+            clean_df = flat_info.pivot_table(values="value", columns="key", aggfunc="first")
 
-        # Setting a filter for the desired data
-        required_data = [
-            "Area",
-            "Build year",
-            "Building type",
-            "Equipment",
-            "Floor",
-            "Heating system",
-            "No. of floors",
-            "Number of rooms ",
-        ]
+            # Setting a filter for the desired data
+            required_data = [
+                "Area",
+                "Build year",
+                "Building type",
+                "Equipment",
+                "Floor",
+                "Heating system",
+                "No. of floors",
+                "Number of rooms ",
+            ]
 
-        clean_df = clean_df.filter(required_data)
+            clean_df = clean_df.filter(required_data)
 
-        # Cleaning up data with regex
-        clean_df["Area"] = clean_df["Area"].str.findall(r"(\d+)")
-        clean_df["Area"] = ".".join(clean_df["Area"].iloc[0])
+            # Cleaning up data with regex
+            clean_df["Area"] = clean_df["Area"].str.findall(r"(\d+)")
+            clean_df["Area"] = ".".join(clean_df["Area"].iloc[0])
 
-        clean_df["Build year"] = clean_df["Build year"].str.findall(r"(\d+)")
+            clean_df["Build year"] = clean_df["Build year"].str.findall(r"(\d+)")
 
-        # Cheking if aparment has been renovated, if not, setting the renovation date to 0
-        clean_df["Renovation year"] = 0
-        if len(clean_df["Build year"].iloc[0]) == 2:
-            clean_df["Renovation year"].iloc[0] = clean_df["Build year"].iloc[0][1]
-            clean_df["Build year"].iloc[0] = clean_df["Build year"].iloc[0][0]
-        else:
-            clean_df["Build year"].iloc[0] = clean_df["Build year"].iloc[0][0]
+            # Cheking if aparment has been renovated, if not, setting the renovation date to 0
+            clean_df["Renovation year"] = 0
+            if len(clean_df["Build year"].iloc[0]) == 2:
+                clean_df["Renovation year"].iloc[0] = clean_df["Build year"].iloc[0][1]
+                clean_df["Build year"].iloc[0] = clean_df["Build year"].iloc[0][0]
+            else:
+                clean_df["Build year"].iloc[0] = clean_df["Build year"].iloc[0][0]
 
-        # Extracting the price
-        price = soup.find("span", class_="main-price")
-        price = re.findall("\d+", price.text)
-        clean_df["price"] = "".join(price)
+            # Extracting the price
+            price = soup.find("span", class_="main-price")
+            price = re.findall("\d+", price.text)
+            clean_df["price"] = "".join(price)
 
-        # Extracting and parsing the address
-        address = soup.find("h1")
-        address = address.text.split(",")
+            # Extracting and parsing the address
+            address = soup.find("h1")
+            address = address.text.split(",")
 
-        clean_df["city"] = address[0].strip()
-        clean_df["region"] = address[1].strip()
+            clean_df["city"] = address[0].strip()
+            clean_df["region"] = address[1].strip()
 
-        if len(address) > 2:
-            clean_df["street"] = address[2].strip()
-        else:
-            clean_df["street"] = "None"
+            if len(address) > 2:
+                clean_df["street"] = address[2].strip()
+            else:
+                clean_df["street"] = "None"
 
-        self.df = self.df.append(clean_df, ignore_index=True)
+            self.df = self.df.append(clean_df, ignore_index=True)
+        except:
+            print("Could not extract data, check url")
 
     def scrape_aruodas(self, pages: int) -> DataFrame:
         """Iterates through search results, scraping every listing in the page
