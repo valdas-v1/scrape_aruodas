@@ -149,9 +149,3 @@ class Scraper:
 
     def save(self):
         pickle.dump(self.df, open("df.pkl", "wb"))
-
-
-a = Scraper()
-a.scrape_aruodas(250)
-a.save()
-a.encode_data()
