@@ -18,5 +18,11 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    install_requires=['beautifulsoup4', 'pandas', 'regex'],
+    install_requires=[
+        'beautifulsoup4', 
+        'pandas', 
+        'regex', 
+        'requests', 
+        'pickle'
+    ],
 )
