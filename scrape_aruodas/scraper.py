@@ -60,7 +60,7 @@ class Scraper:
 
             cleaned_value = []
             for i in info[0].find_all("dd"):
-                cleaned_value.append(i.text)
+                cleaned_value.append(i.text.strip())
 
             flat_info["key"] = cleaned_key
             flat_info["value"] = cleaned_value
