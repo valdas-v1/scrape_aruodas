@@ -9,6 +9,9 @@ import time
 
 
 class Scraper:
+    """A Scraper designed to scrape Aruodas.lt apartment listing data
+    More info at: https://github.com/valdas-v1/scrape_aruodas
+    """
     def __init__(self):
         # Placeholder DataFrame to hold scraped data
         self.df = pd.DataFrame()
