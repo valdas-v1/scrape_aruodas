@@ -22,7 +22,6 @@ setuptools.setup(
         'beautifulsoup4', 
         'pandas', 
         'regex', 
-        'requests', 
-        'pickle'
+        'requests'
     ],
 )
