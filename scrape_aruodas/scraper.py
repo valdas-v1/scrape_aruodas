@@ -78,7 +78,7 @@ class Scraper:
                 "Floor",
                 "Heating system",
                 "No. of floors",
-                "Number of rooms ",
+                "Number of rooms",
             ]
 
             clean_df = clean_df.filter(required_data)
