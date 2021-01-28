@@ -56,7 +56,7 @@ class Scraper:
             flat_info = pd.DataFrame()
             cleaned_key = []
             for i in info[0].find_all("dt"):
-                cleaned_key.append(i.text)
+                cleaned_key.append(i.text.strip())
 
             cleaned_value = []
             for i in info[0].find_all("dd"):
