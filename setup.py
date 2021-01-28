@@ -10,7 +10,7 @@ setuptools.setup(
     description="Collect data from scraping Aruodas.lt",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/valdas-v1/scrape_aruodas",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
