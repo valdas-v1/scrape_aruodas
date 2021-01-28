@@ -126,7 +126,7 @@ class Scraper:
             search = search.find_all("a", class_="object-image-link")
 
             for link in search:
-                print(f'https://m.en.aruodas.lt{link["href"]}')
+                print(f'Currently scraping: https://m.en.aruodas.lt{link["href"]}')
                 flat = self.get_soup(f'https://m.en.aruodas.lt{link["href"]}')
 
                 self.extract_info(flat)
