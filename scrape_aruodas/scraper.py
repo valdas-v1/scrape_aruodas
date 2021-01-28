@@ -109,11 +109,14 @@ class Scraper:
 
         self.df = self.df.append(clean_df, ignore_index=True)
 
-    def scrape_aruodas(self, pages: int):
+    def scrape_aruodas(self, pages: int) -> DataFrame:
         """Iterates through search results, scraping every listing in the page
 
         Args:
             pages (int): How many search pages to scrape (there are 25 listings on each page)
+
+        Returns:
+            DataFrame (object): DataFrame of the scraped data
         """
         for page in range(pages):
             search = self.get_soup(f"https://m.en.aruodas.lt/butai/puslapis/{page}/")
@@ -125,12 +128,13 @@ class Scraper:
 
                 self.extract_info(flat)
 
-    def save(self, df: DataFrame, name: str):
-        """Saves the provided DataFrame to csv with the specified name
+        return self.df
+
+    def save(self, name: str):
+        """Saves collected data from scraping to csv with the specified name
 
         Args:
-            df (DataFrame): DataFrame to be saved to csv
             name (str): Name of the csv
         """
 
-        df.to_csv(f"{name}.csv")
+        self.df.to_csv(f"{name}.csv")
