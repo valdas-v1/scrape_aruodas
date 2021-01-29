@@ -147,4 +147,4 @@ class Scraper:
             name (str): Name of the csv
         """
 
-        self.df.to_csv(f"{name}.csv")
+        self.df.to_csv(f"{name}.csv", index=False)
