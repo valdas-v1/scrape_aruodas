@@ -112,7 +112,8 @@ class Scraper:
             if len(address) > 2:
                 clean_df["street"] = address[2].strip()
             else:
-                clean_df["street"] = "None"
+                clean_df["street"] = clean_df["region"]
+                clean_df["region"] = 'None'
 
             self.df = self.df.append(clean_df, ignore_index=True)
         except:
