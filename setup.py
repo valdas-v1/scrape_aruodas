@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="scrape_aruodas",
-    version="0.0.1",
+    version="0.0.2",
     author="valdas-v1",
     description="Collect data from scraping Aruodas.lt",
     long_description=long_description,

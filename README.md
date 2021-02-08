@@ -48,7 +48,7 @@ Aruodas.lt Scraper uses a number of open source projects to work properly:
     ```
 4) Saving collected data in a csv
     ```python
-    a.save('data')
+    a.save_csv('data')
     ```
 
 License
