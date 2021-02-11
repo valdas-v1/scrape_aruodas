@@ -24,7 +24,7 @@ class Scraper:
             "Accept-Language": "en-US, en;q=0.5",
         }
 
-    def sleep(self):
+    def sleep(self) -> None:
         """Sleeps for 1.26 seconds to avoid getting flagged as a bot and get a captcha"""
         time.sleep(1.26)
 
@@ -175,7 +175,7 @@ class Scraper:
 
         return address
 
-    def extract_info(self, soup: BeautifulSoup):
+    def extract_info(self, soup: BeautifulSoup) -> None:
         """Takes BeautifulSoup object and extracts aparment data. Appends the extracted data to the main DataFrame
 
         Args:
@@ -234,7 +234,7 @@ class Scraper:
 
         return self.df
 
-    def save_csv(self, name: str):
+    def save_csv(self, name: str) -> None:
         """Saves collected data from scraping to csv with the specified name
 
         Args:
