@@ -157,6 +157,7 @@ class Scraper:
 
         price = soup.find("span", class_="main-price")
         price = re.findall("\d+", price.text)
+        price = "".join(price)
 
         return price
 
@@ -191,8 +192,7 @@ class Scraper:
 
             clean_df = self.check_if_renovated(clean_df)
 
-            price = self.extract_price(soup)
-            clean_df["price"] = "".join(price)
+            clean_df["price"] = self.extract_price(soup)
 
             address = self.extract_address(soup)
             clean_df["city"] = address[0].strip()

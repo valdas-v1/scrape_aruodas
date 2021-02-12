@@ -42,3 +42,32 @@ def test_filter_apartment_data():
     ]
 
     assert (filtered_df.columns == required_data).all()
+
+
+def test_clean_apartment_data():
+    soup = scraper.get_soup(scraper.get_response(example_apartment_url))
+    df = scraper.extract_apartment_data(soup)
+    filtered_df = scraper.filter_apartment_data(df)
+
+    clean_df = scraper.clean_apartment_data(df)
+
+    assert clean_df["Area"].iloc[0] == "47"
+    assert clean_df["Build year"].iloc[0] == ["2020"]
+
+
+def check_if_renovated():
+    soup = scraper.get_soup(scraper.get_response(example_apartment_url))
+    df = scraper.extract_apartment_data(soup)
+    filtered_df = scraper.filter_apartment_data(df)
+    clean_df = scraper.clean_apartment_data(df)
+
+    clean_df = scraper.check_if_renovated(clean_df)
+
+    assert clean_df["Renovated"].iloc[0] == "0"
+
+
+def test_extract_price():
+    soup = scraper.get_soup(scraper.get_response(example_apartment_url))
+    price = scraper.extract_price(soup)
+
+    assert price == "129400"
