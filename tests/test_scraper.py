@@ -63,7 +63,7 @@ def check_if_renovated():
 
     clean_df = scraper.check_if_renovated(clean_df)
 
-    assert clean_df["Renovated"].iloc[0] == "0"
+    assert clean_df["Renovation year"].iloc[0] == "0"
 
 
 def test_extract_price():
@@ -71,3 +71,23 @@ def test_extract_price():
     price = scraper.extract_price(soup)
 
     assert price == "129400"
+
+
+def test_extract_address():
+    soup = scraper.get_soup(scraper.get_response(example_apartment_url))
+    address = scraper.extract_address(soup)
+
+    assert address == ['Vilnius', ' Naujamiestis', ' Gerosios Vilties g.']
+
+
+def test_extract_info():
+    soup = scraper.get_soup(scraper.get_response(example_apartment_url))
+    scraper.extract_info(soup)
+
+    assert len(scraper.df.columns) == 13
+    
+
+def test_scrape_aruodas():
+    scraper.scrape_aruodas(1)
+
+    assert scraper.df.shape == (26,13)
