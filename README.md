@@ -40,15 +40,15 @@ Aruodas.lt Scraper uses a number of open source projects to work properly:
     ```
 2) Create an instance of the Scraper
     ```python
-    a = Scraper()
+    scraper = Scraper()
     ```
 3) Scraping a single search page of 25 listings
     ```python
-    a.scrape_aruodas(1)
+    scraper.scrape_aruodas(1)
     ```
 4) Saving collected data in a csv
     ```python
-    a.save_csv('data')
+    scraper.save_csv('data')
     ```
 
 License
