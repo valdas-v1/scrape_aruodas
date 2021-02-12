@@ -24,7 +24,7 @@ class Scraper:
             "Accept-Language": "en-US, en;q=0.5",
         }
 
-    def sleep(self) -> None:
+    def __sleep(self) -> None:
         """Sleeps for 1.26 seconds to avoid getting flagged as a bot and get a captcha"""
         time.sleep(1.26)
 
@@ -37,7 +37,7 @@ class Scraper:
         Returns:
             requests.Response: Get response
         """
-        self.sleep()
+        self.__sleep()
         return requests.get(url, headers=self.headers)
 
     def get_soup(self, response: requests.Response) -> BeautifulSoup:
