@@ -55,7 +55,7 @@ def test_clean_apartment_data():
     assert clean_df["Build year"].iloc[0] == ["2020"]
 
 
-def check_if_renovated():
+def test_check_if_renovated():
     soup = scraper.get_soup(scraper.get_response(example_apartment_url))
     df = scraper.extract_apartment_data(soup)
     filtered_df = scraper.filter_apartment_data(df)
@@ -63,7 +63,7 @@ def check_if_renovated():
 
     clean_df = scraper.check_if_renovated(clean_df)
 
-    assert clean_df["Renovation year"].iloc[0] == "0"
+    assert clean_df["Renovation year"].iloc[0] == 0
 
 
 def test_extract_price():
