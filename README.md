@@ -33,6 +33,25 @@ Aruodas.lt Scraper uses a number of open source projects to work properly:
     ```sh
     $ pip install git+https://github.com/valdas-v1/scrape_aruodas
     ```
+
+#### Installation as a standalone script:
+1) Clone the repository
+    ```sh
+    $ git clone https://github.com/valdas-v1/scrape_aruodas
+    ```
+2) Create a virtual environment
+    ```sh
+    $ python -m venv venv
+    ```
+3) Activate the virtual environment
+    ```sh
+    $ venv\Scripts\activate.bat
+    ```
+4) Install the requirements
+    ```sh
+    $ pip install -r requirements.txt
+    ```
+
 ## Usage
 1) Import the package
     ```python
@@ -54,4 +73,4 @@ Aruodas.lt Scraper uses a number of open source projects to work properly:
 License
 ----
 
-[MIT](LICENSE)
+[Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](LICENSE)
