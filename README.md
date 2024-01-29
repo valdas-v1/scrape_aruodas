@@ -1,16 +1,20 @@
 # Aruodas.lt Real Estate Listing Scraper
 
 ## Overview
-The Aruodas.lt Scraper is a robust tool designed for efficiently extracting apartment listing data from Aruodas.lt. This scraper is tailored to meet the needs of data analysts and real estate professionals seeking comprehensive market insights.
+The Aruodas.lt Scraper was a robust tool designed for efficiently extracting apartment listing data from Aruodas.lt. Initially tailored for data analysts and real estate professionals seeking comprehensive market insights, this scraper served as an efficient tool for data extraction.
+
+### Important Update
+Since the development of this project, Aruodas.lt has significantly enhanced its anti-scraping measures. They have implemented advanced security features like Cloudflare protection and mandatory JavaScript execution. As a result, this version of the scraper is no longer functional. However, the HTML extraction and parsing logic remain largely unchanged, making this project a valuable example of how web scraping was previously accomplished.
+
+For historical data and insights into Aruodas.lt's listings, visit my [Lithuanian Real Estate Listings Repository](https://github.com/valdas-v1/lithuanian-real-estate-listings).
 
 ### Features
-- **Apartment Listings**: Extracts key details such as price, build year, and number of rooms.
-- **Bot Detection Evasion**: Utilizes advanced techniques to avoid detection by website security.
-- **Data Management**: Seamlessly integrates with Pandas DataFrame for efficient data handling.
-- **Upcoming**: Extension to house listing scraping.
+- **Apartment Listings**: Extracted key details such as price, build year, and number of rooms.
+- **Bot Detection Evasion**: Previously utilized techniques to avoid detection by website security.
+- **Data Management**: Seamlessly integrated with Pandas DataFrame for efficient data handling.
 
 ### Technologies
-Built on a foundation of open-source technologies, the Aruodas.lt Scraper leverages:
+Built on a foundation of open-source technologies, the Aruodas.lt Scraper leveraged:
 - [Python](https://www.python.org/): Core programming language.
 - [Pandas](https://pandas.pydata.org/): Data analysis and manipulation tool.
 - [Beautiful Soup](https://pypi.org/project/beautifulsoup4/): For efficient HTML parsing.
@@ -42,36 +46,25 @@ Built on a foundation of open-source technologies, the Aruodas.lt Scraper levera
     ```sh
     git clone https://github.com/valdas-v1/scrape_aruodas
     ```
-2. **Setup Virtual Environment**:
+2. **Navigate to Directory**:
+    ```sh
+    cd scrape_aruodas
+    ```
+3. **Setup Virtual Environment**:
     ```sh
     python -m venv venv
     ```
-3. **Activate Virtual Environment**:
+4. **Activate Virtual Environment**:
     ```sh
     venv\Scripts\activate.bat
     ```
-4. **Install Requirements**:
+5. **Install Requirements**:
     ```sh
     pip install -r requirements.txt
     ```
 
-## Usage
-1. **Import the Scraper**:
-    ```python
-    from scrape_aruodas import Scraper
-    ```
-2. **Initialize Scraper**:
-    ```python
-    scraper = Scraper()
-    ```
-3. **Scrape Listings** (e.g., a single search page of 25 listings):
-    ```python
-    scraper.scrape_aruodas(1)
-    ```
-4. **Save Data to CSV**:
-    ```python
-    scraper.save_csv('data.csv')
-    ```
+## Contact for Current Data
+If you are interested in current listing data, I have been able to circumvent Aruodas.lt's security measures and continue to scrape their website. Feel free to contact me on [LinkedIn](https://www.linkedin.com/in/valdas-paulavicius/). We can discuss potential collaborations or solutions.
 
 ## License
 This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](LICENSE).
